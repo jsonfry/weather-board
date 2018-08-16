@@ -1,9 +1,18 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-python
 
-RUN apt-get update && apt-get install -y python-smbus python-numpy python-pil
+#RUN apt-get update
+#RUN apt-get install -y python-smbus 
+#RUN apt-get install -y python-inkyphat
+#RUN apt-get install -y python-numpy
+#RUN apt-get install -y python-pil
+#RUN pip install inkyphat requests
+#COPY inkyphat-install /inkyphat-install
+#RUN ./inkyphat-install -y
+RUN apt-get update && apt-get install -y raspi-gpio python-smbus libfreetype6-dev
 RUN pip install inkyphat requests
 
 COPY app/app.py /app.py
+COPY app/assets /assets
 
 CMD [ "python", "app.py" ]
 
