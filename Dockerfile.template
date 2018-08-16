@@ -1,0 +1,9 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-python
+
+RUN apt-get update && apt-get install -y python-smbus python-numpy python-pil
+RUN pip install inkyphat requests
+
+COPY app/app.py /app.py
+
+CMD [ "python", "app.py" ]
+
