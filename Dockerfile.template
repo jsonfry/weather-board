@@ -13,6 +13,7 @@ RUN pip install inkyphat requests
 
 COPY app/app.py /app.py
 COPY app/assets /assets
+COPY app/start.sh /start.sh
 
-CMD [ "python", "app.py" ]
+CMD ["bash", "start.sh"]
 
