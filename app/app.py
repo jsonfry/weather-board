@@ -24,6 +24,7 @@ if DS_KEY == None:
     sys.exit
 DS_UNITS = os.getenv('DS_UNITS', 'uk2')
 DS_LAT_LNG = os.getenv('DS_LAT_LNG', '50.821,-0.151')
+ROTATE_180 = os.getenv('ROTATE_180', 'false') == 'true'
 
 NUM_COLS = 5
 COL_WIDTH = inkyphat.WIDTH / NUM_COLS
@@ -65,6 +66,10 @@ def draw_weather():
         print 'No weather!'
         return
 
+
+    if ROTATE_180 == True:
+        inkyphat.set_rotation(180)
+    # TODO configurable color
     inkyphat.set_colour('red')
     inkyphat.set_border(inkyphat.RED)
 
