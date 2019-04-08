@@ -60,6 +60,10 @@ def get_weather():
     except:
         return None
 
+def draw_shadowed_text(x, y, text, font):
+    inkyphat.text((x + 1, y + 1), text, inkyphat.BLACK, font = font)
+    inkyphat.text((x, y), text, inkyphat.WHITE, font = font)
+
 def draw_weather():
     weather = get_weather()
     if weather == None:
@@ -82,8 +86,7 @@ def draw_weather():
         # draw time label
         time = weather['hours'][i]['time']
         w, h = timeFont.getsize(time)
-        inkyphat.text((get_x(w, i) + 1, 5), time, inkyphat.BLACK, font = timeFont) # shadow
-        inkyphat.text((get_x(w, i), 4), time, inkyphat.WHITE, font = timeFont)
+        draw_shadowed_text(get_x(w, i), 4, time, timeFont)
 
         # draw icon
         try:
@@ -97,12 +100,10 @@ def draw_weather():
         # draw temperature label
         temp = weather['hours'][i]['temperature']
         w, h = temperatureFont.getsize(temp)
-        inkyphat.text((get_x(w, i) + 1, 57), temp, inkyphat.BLACK, font=temperatureFont) # shadow
-        inkyphat.text((get_x(w, i), 56), temp, inkyphat.WHITE, font=temperatureFont)
+        draw_shadowed_text(get_x(w, i), 56, temp, temperatureFont)
 
     # TODO multiple lines if too long
-    inkyphat.text((6, 85), weather['summary'], inkyphat.BLACK, font=summaryFont) # shadow
-    inkyphat.text((5, 84), weather['summary'], inkyphat.WHITE, font=summaryFont)
+    draw_shadowed_text(5, 84, weather['summary'], summaryFont)
 
     inkyphat.show()
 
